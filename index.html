@@ -1,1 +1,61 @@
-<form name="iterable_optin" action="//links.iterable.com/lists/publicAddSubscriberForm?publicIdString=26154604-9cda-47c2-994e-68917ff8ae9b" target="_blank" method="POST" class="email"> <input type="text" name="email" size="22" onfocus="if(this.value===this.defaultValue){this.value='';}" onblur="if(this.value===''){this.value=this.defaultValue;}" value="Enter your email"> <input type="submit" value="Submit"> </form>
+<html lang="en">
+  <head>
+    <title>Subscribe</title>
+    <style>
+      button:disabled,
+      button[disabled] {
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://local.sltrib.com/css/newsletter-form.css"
+    />
+  </head>
+  <section class="news-letter" id="news-letter">
+    <div class="news-box">
+      <div class="container">
+        <img
+          src="https://cloudfront-us-east-1.images.arcpublishing.com/sltrib/DE5JVKJKPVFG7INJEXIHZXRGWQ.png"
+          width="auto"
+          height="153px"
+        />
+        <h3 class="news-heading" style="margin: 10px 0 0">
+          Subscribe To <em>My</em> Newsletter<br />
+        </h3>
+        <p class="des how-de" style="color: #312940; margin: 10px">
+          Get updates on the resource and get email updates when we have discovered new findings
+        </p>
+        <form
+          name="iterable_optin"
+          action="//links.iterable.com/lists/publicAddSubscriberForm?publicIdString=26154604-9cda-47c2-994e-68917ff8ae9b"
+          target="_blank"
+          method="POST"
+          class="form-newsletter"
+        >
+          <div
+            align="center"
+            class="g-recaptcha"
+            data-sitekey="6LeqZHcoAAAAAPuo2btWSPwSV60Y2_bOww-daPJO"
+            data-callback="onSignUp"
+          ></div>
+          <br />
+          <input
+            type="text"
+            class="news-letter-input"
+            name="email"
+            size="22"
+            onfocus="if(this.value===this.defaultValue){this.value='';}"
+            onblur="if(this.value===''){this.value=this.defaultValue;}"
+            value="Enter your email"
+          />
+          <button style="top: 113px" id="submit-btn" class="sub-btn" disabled>
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</html>
