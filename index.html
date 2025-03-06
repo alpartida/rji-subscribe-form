@@ -1,67 +1,39 @@
-<html lang="en">
-  <head>
-    <title>Subscribe</title>
-    <style>
-      button:disabled,
-      button[disabled] {
-        border: 1px solid #999999;
-        background-color: #cccccc;
-        color: #666666;
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://local.sltrib.com/css/newsletter-form.css"
-    />
-  </head>
-  <section class="news-letter" id="news-letter">
-    <div class="news-box">
-      <div class="container">
-        <img
-          src="https://local.sltrib.com/css/tribunet.png"
-          width="auto"
-          height="153px"
-        />
-        <h3 class="news-heading" style="margin: 10px 0 0">
-          Subscribe To <em>My</em> Newsletter<br />
-        </h3>
-        <p class="des how-de" style="color: #312940; margin: 10px">
-          Get updates on the resource and get email updates when we have
-          discovered new findings
-        </p>
-        <form
-          name="iterable_optin"
-          action="//links.iterable.com/lists/publicAddSubscriberForm?publicIdString=26154604-9cda-47c2-994e-68917ff8ae9b"
-          target="_blank"
-          method="POST"
-          class="form-newsletter"
-        >
-          <div
-            align="center"
-            class="g-recaptcha"
-            data-sitekey="6LeqZHcoAAAAAPuo2btWSPwSV60Y2_bOww-daPJO"
-            data-callback="onSignUp"
-          ></div>
-          <br />
-          <input
-            type="text"
-            class="news-letter-input"
-            name="email"
-            size="22"
-            onfocus="if(this.value===this.defaultValue){this.value='';}"
-            onblur="if(this.value===''){this.value=this.defaultValue;}"
-            value="Enter your email"
-          />
-          <button
-            style="top: 113px; margin-top: 1rem; position: static"
-            id="submit-btn"
-            class="sub-btn"
-            disabled
-          >
-            Subscribe
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-</html>
+<div id="newsletter-embed" class="newsletter-embeds-recaptcha"></div>
+<script src="https://newsletter-embeds.s3.amazonaws.com/rji.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script
+ src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"
+ integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ=="
+ crossorigin="anonymous"
+ referrerpolicy="no-referrer"
+></script>
+<script
+ src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+ async
+ defer
+></script>
+<script>
+ function onSignUp() {
+   const token = grecaptcha.getResponse();
+   if (!token) {
+     alert("Please verify the reCAPTCHA!");
+   } else {
+     axios
+       .post(
+         "https://8c0ug47jei.execute-api.us-east-1.amazonaws.com/dev/newsletter/checkCaptcha",
+         {
+           token,
+           env: "PROD",
+         }
+       )
+       .then(({ data: { message } }) => {
+         console.log(message);
+         if (message === "Human 👨 👩") {
+           document.getElementById("submit-btn").removeAttribute("disabled");
+         } else {
+           console.log("ROBOTO");
+         }
+       });
+   }
+ }
+</script>
